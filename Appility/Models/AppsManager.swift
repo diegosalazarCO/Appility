@@ -17,6 +17,7 @@ class AppsManager {
     
     var applications = [App]()
     var categories: [String:[App]] = [:]
+    var listOfCategories = [String]()
     var delegate: AppsManagerDelegate? = nil
     
     func loadApps() {
@@ -52,11 +53,18 @@ class AppsManager {
                                       logo75: appLogo75,
                                       logo100: appLogo100,
                                       artist: appArtist)
+                // Add aplication to Aplications Array
                 self.applications.append(application)
+                // Add new entry in dictionary ej: [Games : [Fifa, Angrybirds...]]
                 self.categories[application.category] = []
                 self.categories[application.category]?.append(application)
+                // Just the list of Categoriues in array
+                if self.listOfCategories.contains(application.category) { } else {
+                    self.listOfCategories.append(application.category)
+                }
             }
-
+            // Sort categories alphabetically
+            self.listOfCategories.sortInPlace { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
             if let delegate = self.delegate {
                 dispatch_async(dispatch_get_main_queue(), { delegate.didLoadApps() })
             }
