@@ -9,10 +9,15 @@
 import Foundation
 import SwiftyJSON
 
+protocol AppsManagerDelegate {
+    func didLoadApps()
+}
+
 class AppsManager {
     
     var applications = [App]()
     var categories: [String:[App]] = [:]
+    var delegate: AppsManagerDelegate? = nil
     
     func loadApps() {
         let apiURL = "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json"
@@ -48,13 +53,13 @@ class AppsManager {
                                       logo100: appLogo100,
                                       artist: appArtist)
                 self.applications.append(application)
-                //print(application.category)
                 self.categories[application.category] = []
                 self.categories[application.category]?.append(application)
             }
-            //print(self.applications)
-            //dump(self.categories)
-            print(self.categories.count)
+
+            if let delegate = self.delegate {
+                dispatch_async(dispatch_get_main_queue(), { delegate.didLoadApps() })
+            }
         }
         session.resume()
     }
