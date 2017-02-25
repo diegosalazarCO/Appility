@@ -21,7 +21,7 @@ class AppsManager {
     var delegate: AppsManagerDelegate? = nil
     
     func loadApps() {
-        let apiURL = "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json"
+        let apiURL = "https://itunes.apple.com/us/rss/topfreeapplications/limit=100/json"
         let url = NSURL(string: apiURL)!
         let session = NSURLSession.sharedSession().dataTaskWithURL(url){
             (data, response, error) in
@@ -30,18 +30,16 @@ class AppsManager {
                 print("Oops! something is wrong with the data..")
                 return
             }
+            
             let json = JSON(data: data)
             // Each Entry is an App in the JSON
             let entries = json["feed"]["entry"].array!
+            
             for app in entries {
                 let appName = app["im:name"]["label"].string!
-                //print(appName)
                 let appSummary = app["summary"]["label"].string!
-                //print(appSummary)
                 let appCategory = app["category"]["attributes"]["label"].string!
-                //print(appCategory)
                 let appLogo53 = app["im:image"][0]["label"].string!
-                //print(appLogo53)
                 let appLogo75 = app["im:image"][1]["label"].string!
                 let appLogo100 = app["im:image"][2]["label"].string!
                 let appArtist = app["im:artist"]["label"].string!
@@ -53,14 +51,17 @@ class AppsManager {
                                       logo75: appLogo75,
                                       logo100: appLogo100,
                                       artist: appArtist)
+                
                 // Add aplication to Aplications Array
                 self.applications.append(application)
+                
                 // Add new entry in dictionary ej: [Games : [Fifa, Angrybirds...]]
                 if self.categories[application.category] != nil { } else {
                     self.categories[application.category] = []
                 }
                 self.categories[application.category]?.append(application)
-                // Just the list of Categoriues in array
+                
+                // Just the list of Categories in array
                 if self.listOfCategories.contains(application.category) { } else {
                     self.listOfCategories.append(application.category)
                 }

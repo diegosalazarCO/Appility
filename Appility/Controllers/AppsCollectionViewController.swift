@@ -16,6 +16,7 @@ class AppsCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = apps![0].category
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -26,16 +27,21 @@ class AppsCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
     }
 
-    /*
+
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AppDetailSegue" {
+            let appDetailViewController = segue.destinationViewController as! AppDetailViewController
+            let cell = sender as! AppCell
+            if let indexPath = self.collectionView?.indexPathForCell(cell) {
+                appDetailViewController.app = apps![(indexPath.row)]
+            }
+        }
     }
-    */
 
+    
     // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,39 +57,28 @@ class AppsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! AppCell
         cell.appNameLabel.text = apps![indexPath.row].name
+        cell.appIcon.layer.cornerRadius = 27.0
+        cell.appIcon.clipsToBounds = true
+        getAppIcon(forItemAtIndex: indexPath.row, withOutlet: cell.appIcon)
         
         return cell
     }
+    
+    func getAppIcon(forItemAtIndex indexPath: Int, withOutlet outlet: UIImageView) {
+        let iconURL = NSURL(string: apps![indexPath].logo100)!
+        let session = NSURLSession.sharedSession().dataTaskWithURL(iconURL) { (data, response, error) in
+            guard let data = data else {
+                print("Oops! something is wrong with the data..")
+                return
+            }
+            let image = UIImage(data: data)
+            dispatch_async(dispatch_get_main_queue(), { 
+                outlet.image = image
+            })
+        }
+        session.resume()
+    }
 
     // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
