@@ -11,6 +11,8 @@
 		267DC5A51E5DF2850041377F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267DC5A41E5DF2850041377F /* Colors.swift */; };
 		267DC5A71E5DF4B60041377F /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267DC5A61E5DF4B60041377F /* CategoryTableViewCell.swift */; };
 		267DC5A91E5E01680041377F /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267DC5A81E5E01680041377F /* CategoryTableViewController.swift */; };
+		26AE8CFB1E60C8F300D75A7B /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE8CFA1E60C8F300D75A7B /* AppCell.swift */; };
+		26AE8CFD1E60D06400D75A7B /* AppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */; };
 		26B575591E595837002B67E1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B575581E595837002B67E1 /* App.swift */; };
 		26F6C0A81E590C12009BF64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6C0A71E590C12009BF64B /* AppDelegate.swift */; };
 		26F6C0AA1E590C12009BF64B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6C0A91E590C12009BF64B /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 		267DC5A41E5DF2850041377F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Utilities/Colors.swift; sourceTree = "<group>"; };
 		267DC5A61E5DF4B60041377F /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTableViewCell.swift; path = Views/CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		267DC5A81E5E01680041377F /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTableViewController.swift; path = Controllers/CategoryTableViewController.swift; sourceTree = "<group>"; };
+		26AE8CFA1E60C8F300D75A7B /* AppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCell.swift; path = Views/AppCell.swift; sourceTree = "<group>"; };
+		26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCollectionViewController.swift; path = Controllers/AppsCollectionViewController.swift; sourceTree = "<group>"; };
 		26B575581E595837002B67E1 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = App.swift; path = Models/App.swift; sourceTree = "<group>"; };
 		26F6C0A41E590C12009BF64B /* Appility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F6C0A71E590C12009BF64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,13 +92,13 @@
 		26F6C0A61E590C12009BF64B /* Appility */ = {
 			isa = PBXGroup;
 			children = (
+				26F6C0AB1E590C12009BF64B /* Main.storyboard */,
 				26F6C0B91E5930F7009BF64B /* Models */,
 				26F6C0BB1E593103009BF64B /* View Controllers */,
 				26F6C0BA1E5930FC009BF64B /* Views */,
 				267DC5A31E5DF25E0041377F /* Utilities */,
 				26F6C0A71E590C12009BF64B /* AppDelegate.swift */,
 				26F6C0A91E590C12009BF64B /* ViewController.swift */,
-				26F6C0AB1E590C12009BF64B /* Main.storyboard */,
 				26F6C0AE1E590C12009BF64B /* Assets.xcassets */,
 				26F6C0B01E590C12009BF64B /* LaunchScreen.storyboard */,
 				26F6C0B31E590C12009BF64B /* Info.plist */,
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				267DC5A61E5DF4B60041377F /* CategoryTableViewCell.swift */,
+				26AE8CFA1E60C8F300D75A7B /* AppCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				267DC5A81E5E01680041377F /* CategoryTableViewController.swift */,
+				26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -261,8 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				267DC5A91E5E01680041377F /* CategoryTableViewController.swift in Sources */,
+				26AE8CFB1E60C8F300D75A7B /* AppCell.swift in Sources */,
 				26F6C0AA1E590C12009BF64B /* ViewController.swift in Sources */,
 				267DC5A51E5DF2850041377F /* Colors.swift in Sources */,
+				26AE8CFD1E60D06400D75A7B /* AppsCollectionViewController.swift in Sources */,
 				26B575591E595837002B67E1 /* App.swift in Sources */,
 				26F6C0A81E590C12009BF64B /* AppDelegate.swift in Sources */,
 				26F6C0BD1E593180009BF64B /* AppsManager.swift in Sources */,
@@ -392,7 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5EMMFJR5B8;
 				INFOPLIST_FILE = Appility/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.com.diegosalazar.Appility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -408,7 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5EMMFJR5B8;
 				INFOPLIST_FILE = Appility/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.com.diegosalazar.Appility;
 				PRODUCT_NAME = "$(TARGET_NAME)";

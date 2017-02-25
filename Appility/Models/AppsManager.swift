@@ -56,7 +56,9 @@ class AppsManager {
                 // Add aplication to Aplications Array
                 self.applications.append(application)
                 // Add new entry in dictionary ej: [Games : [Fifa, Angrybirds...]]
-                self.categories[application.category] = []
+                if self.categories[application.category] != nil { } else {
+                    self.categories[application.category] = []
+                }
                 self.categories[application.category]?.append(application)
                 // Just the list of Categoriues in array
                 if self.listOfCategories.contains(application.category) { } else {

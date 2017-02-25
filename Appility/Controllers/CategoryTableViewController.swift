@@ -39,19 +39,23 @@ class CategoryTableViewController: UITableViewController, AppsManagerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         cell.categoryLabel.text = appManager.listOfCategories[indexPath.row]
-
+        
         return cell
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "listofAppsSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let appCVC = segue.destinationViewController as! AppsCollectionViewController
+                appCVC.apps = appManager.categories[appManager.listOfCategories[indexPath.row]]!
+            }
+        }
 
+    }
+    
 }
