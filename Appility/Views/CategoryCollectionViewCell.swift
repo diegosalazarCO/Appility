@@ -20,7 +20,7 @@ enum CategoryCellDisplayStyle {
 
 private struct BorderSettings {
     static let width: CGFloat = 1.0 / UIScreen.mainScreen().scale
-    static let colour = UIColor(white: 0.9, alpha: 1.0)
+    static let colour = UIColor.appClouds
 }
 
 class CategoryCollectionViewCell: UICollectionViewCell {

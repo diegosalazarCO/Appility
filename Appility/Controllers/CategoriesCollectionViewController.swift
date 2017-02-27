@@ -83,6 +83,7 @@ class CategoriesCollectionViewController: UICollectionViewController, AppsManage
         cell.categoryIcon.layer.cornerRadius = 27.0
         cell.categoryIcon.clipsToBounds = true
         getAppIcon(forCategory: cell.categoryNameLabel.text!, withOutlet: cell.categoryIcon)
+        cell.displayStyle = styleForTraitCollection(traitCollection)
         
         return cell
     }
@@ -103,51 +104,19 @@ class CategoriesCollectionViewController: UICollectionViewController, AppsManage
         }
         session.resume()
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-    
-    
-
 }
+
+
 extension CategoriesCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: NSIndexPath) -> CGSize {
-        return styleForTraitCollection(traitCollection).itemSizeInCollectionView(collectionView)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return styleForTraitCollection(traitCollection).collectionViewEdgeInsets
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return styleForTraitCollection(traitCollection).itemSizeInCollectionView(collectionView)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return styleForTraitCollection(traitCollection).collectionViewLineSpacing
     }
 }
@@ -157,16 +126,16 @@ extension CategoryCellDisplayStyle {
     func itemSizeInCollectionView(collectionView: UICollectionView) -> CGSize {
         switch (self) {
         case .table:
-            return CGSize(width: collectionView.bounds.width, height: 70)
+            return CGSize(width: collectionView.bounds.width - 16, height: 60)
         case .grid:
-            return CGSize(width: 150, height: 140)
+            return CGSize(width: 300, height: 120)
         }
     }
     
     var collectionViewEdgeInsets: UIEdgeInsets {
         switch (self) {
         case .table:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         case .grid:
             return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         }

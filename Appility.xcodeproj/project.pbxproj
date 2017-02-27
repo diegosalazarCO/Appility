@@ -14,6 +14,7 @@
 		267ECA1F1E636E01000C84DA /* App+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ECA1E1E636E01000C84DA /* App+CoreDataProperties.swift */; };
 		267ECA211E63C3BD000C84DA /* CategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ECA201E63C3BD000C84DA /* CategoriesCollectionViewController.swift */; };
 		267ECA231E63C5A3000C84DA /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ECA221E63C5A3000C84DA /* CategoryCollectionViewCell.swift */; };
+		267ECA271E63F0C0000C84DA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ECA261E63F0C0000C84DA /* NavigationViewController.swift */; };
 		26AE8CFB1E60C8F300D75A7B /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE8CFA1E60C8F300D75A7B /* AppCell.swift */; };
 		26AE8CFD1E60D06400D75A7B /* AppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */; };
 		26AE8CFF1E6210B700D75A7B /* AppDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE8CFE1E6210B700D75A7B /* AppDetailViewController.swift */; };
@@ -32,6 +33,7 @@
 		267ECA1E1E636E01000C84DA /* App+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "App+CoreDataProperties.swift"; path = "Models/App+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		267ECA201E63C3BD000C84DA /* CategoriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesCollectionViewController.swift; path = Controllers/CategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		267ECA221E63C5A3000C84DA /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = Views/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		267ECA261E63F0C0000C84DA /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = Controllers/NavigationViewController.swift; sourceTree = "<group>"; };
 		26AE8CFA1E60C8F300D75A7B /* AppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppCell.swift; path = Views/AppCell.swift; sourceTree = "<group>"; };
 		26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppsCollectionViewController.swift; path = Controllers/AppsCollectionViewController.swift; sourceTree = "<group>"; };
 		26AE8CFE1E6210B700D75A7B /* AppDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDetailViewController.swift; path = Controllers/AppDetailViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				267ECA201E63C3BD000C84DA /* CategoriesCollectionViewController.swift */,
 				26AE8CFC1E60D06400D75A7B /* AppsCollectionViewController.swift */,
 				26AE8CFE1E6210B700D75A7B /* AppDetailViewController.swift */,
+				267ECA261E63F0C0000C84DA /* NavigationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267ECA271E63F0C0000C84DA /* NavigationViewController.swift in Sources */,
 				26AE8CFF1E6210B700D75A7B /* AppDetailViewController.swift in Sources */,
 				26AE8CFB1E60C8F300D75A7B /* AppCell.swift in Sources */,
 				267ECA1D1E636DDA000C84DA /* App.swift in Sources */,
