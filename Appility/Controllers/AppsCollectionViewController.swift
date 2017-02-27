@@ -16,7 +16,7 @@ class AppsCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = apps![0].category
+        self.title = apps!.first!.category
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,10 +65,10 @@ class AppsCollectionViewController: UICollectionViewController {
     }
     
     func getAppIcon(forItemAtIndex indexPath: Int, withOutlet outlet: UIImageView) {
-        let iconURL = NSURL(string: apps![indexPath].logo100)!
+        let iconURL = NSURL(string: apps![indexPath].logo100!)!
         let session = NSURLSession.sharedSession().dataTaskWithURL(iconURL) { (data, response, error) in
             guard let data = data else {
-                print("Oops! something is wrong with the data..")
+                print("Oops! something is wrong downloading the image..")
                 return
             }
             let image = UIImage(data: data)

@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import CoreData
 import SwiftyJSON
+import UIKit
 
 protocol AppsManagerDelegate {
     func didLoadApps()
@@ -19,6 +21,9 @@ class AppsManager {
     var categories: [String:[App]] = [:]
     var listOfCategories = [String]()
     var delegate: AppsManagerDelegate? = nil
+    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+    
+    // MARK: - App Main Actions
     
     func loadApps() {
         let apiURL = "https://itunes.apple.com/us/rss/topfreeapplications/limit=100/json"
@@ -35,6 +40,7 @@ class AppsManager {
             // Each Entry is an App in the JSON
             let entries = json["feed"]["entry"].array!
             
+            self.clearData()
             for app in entries {
                 let appName = app["im:name"]["label"].string!
                 let appSummary = app["summary"]["label"].string!
@@ -43,29 +49,22 @@ class AppsManager {
                 let appLogo75 = app["im:image"][1]["label"].string!
                 let appLogo100 = app["im:image"][2]["label"].string!
                 let appArtist = app["im:artist"]["label"].string!
-                
-                let application = App(name: appName,
-                                      summary: appSummary,
-                                      category: appCategory,
-                                      logo53: appLogo53,
-                                      logo75: appLogo75,
-                                      logo100: appLogo100,
-                                      artist: appArtist)
-                
-                // Add aplication to Aplications Array
-                self.applications.append(application)
-                
-                // Add new entry in dictionary ej: [Games : [Fifa, Angrybirds...]]
-                if self.categories[application.category] != nil { } else {
-                    self.categories[application.category] = []
-                }
-                self.categories[application.category]?.append(application)
-                
-                // Just the list of Categories in array
-                if self.listOfCategories.contains(application.category) { } else {
-                    self.listOfCategories.append(application.category)
+
+                if let context = self.appDelegate?.managedObjectContext {
+                    let app = NSEntityDescription.insertNewObjectForEntityForName("App", inManagedObjectContext: context) as! Appility.App
+                    app.name = appName
+                    app.summary = appSummary
+                    app.artist = appArtist
+                    app.category = appCategory
+                    app.logo100 = appLogo100
+                    do {
+                        try(context.save())
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
+            self.loadData()
             // Sort categories alphabetically
             self.listOfCategories.sortInPlace { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
             if let delegate = self.delegate {
@@ -73,5 +72,50 @@ class AppsManager {
             }
         }
         session.resume()
+    }
+    
+    // Loading data from Core Data
+    func loadData() {
+        if let context = appDelegate?.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: "App")
+            do {
+                applications = try(context.executeFetchRequest(fetchRequest)) as! [App]
+                // Add new entry in dictionary ej: [Games : [Fifa, Angrybirds...]]
+                for app in applications {
+                    let category = app.category
+                    if self.categories[category!] != nil { } else {
+                        self.categories[category!] = []
+                    }
+                    self.categories[app.category!]?.append(app)
+                    
+                    // Just the list of Categories in array
+                    if self.listOfCategories.contains(app.category!) { } else {
+                        self.listOfCategories.append(app.category!)
+                    }
+                }
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+    
+    // Clear all the data in Core Data
+    func clearData() {
+        if let context = appDelegate?.managedObjectContext {
+            do {
+                let entityNames = ["App"]
+                
+                for entityName in entityNames {
+                    let fetchRequest = NSFetchRequest(entityName: entityName)
+                    let objects = try(context.executeFetchRequest(fetchRequest)) as? [NSManagedObject]
+                    for object in objects! {
+                        context.deleteObject(object)
+                    }
+                }
+                try(context.save())
+            } catch let error {
+                print(error)
+            }
+        }
     }
 }
