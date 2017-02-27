@@ -16,5 +16,6 @@ extension App {
     @NSManaged var artist: String?
     @NSManaged var category: String?
     @NSManaged var logo100: String?
+    @NSManaged var logo53: String?
     
 }

@@ -46,7 +46,7 @@ class AppsManager {
                 let appSummary = app["summary"]["label"].string!
                 let appCategory = app["category"]["attributes"]["label"].string!
                 let appLogo53 = app["im:image"][0]["label"].string!
-                let appLogo75 = app["im:image"][1]["label"].string!
+                //let appLogo75 = app["im:image"][1]["label"].string!
                 let appLogo100 = app["im:image"][2]["label"].string!
                 let appArtist = app["im:artist"]["label"].string!
 
@@ -57,6 +57,7 @@ class AppsManager {
                     app.artist = appArtist
                     app.category = appCategory
                     app.logo100 = appLogo100
+                    app.logo53 = appLogo53
                     do {
                         try(context.save())
                     } catch let error {
