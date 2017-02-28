@@ -39,6 +39,7 @@ class AppDetailViewController: UIViewController {
             categoryLabel.text = app.category
             releaseDateLabel.text = app.releaseDate
             let formatter = NSNumberFormatter()
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
             formatter.numberStyle = .CurrencyStyle
             var priceText = formatter.stringFromNumber(app.price!)
             if priceText == "$0.00" { priceText = "Free" }
