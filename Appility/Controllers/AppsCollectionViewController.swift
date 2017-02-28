@@ -37,6 +37,7 @@ class AppsCollectionViewController: UICollectionViewController {
             let cell = sender as! AppCell
             if let indexPath = self.collectionView?.indexPathForCell(cell) {
                 appDetailViewController.app = apps![(indexPath.row)]
+                appDetailViewController.appImage = UIImage(data: apps![(indexPath.row)].logo100Data!)
             }
         }
     }
@@ -72,6 +73,7 @@ class AppsCollectionViewController: UICollectionViewController {
                 return
             }
             let image = UIImage(data: data)
+            self.apps![indexPath].logo100Data = data
             dispatch_async(dispatch_get_main_queue(), { 
                 outlet.image = image
             })

@@ -5,10 +5,14 @@
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo53" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo100" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo100Data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rights" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="App" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="App" positionX="-279" positionY="-90" width="128" height="193"/>
     </elements>
 </model>

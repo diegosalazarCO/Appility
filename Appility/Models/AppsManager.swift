@@ -49,15 +49,24 @@ class AppsManager {
                 //let appLogo75 = app["im:image"][1]["label"].string!
                 let appLogo100 = app["im:image"][2]["label"].string!
                 let appArtist = app["im:artist"]["label"].string!
+                let appPrice = app["im:price"]["attributes"]["amount"].string!
+                let appReleaseDate = app["im:releaseDate"]["attributes"]["label"].string!
+                let appRights = app["rights"]["label"].string!
 
                 if let context = self.appDelegate?.managedObjectContext {
                     let app = NSEntityDescription.insertNewObjectForEntityForName("App", inManagedObjectContext: context) as! Appility.App
+                    
                     app.name = appName
                     app.summary = appSummary
                     app.artist = appArtist
                     app.category = appCategory
                     app.logo100 = appLogo100
                     app.logo53 = appLogo53
+                    app.releaseDate = appReleaseDate
+                    app.rights = appRights
+                    let doublePrice = Double(appPrice)
+                    app.price = NSNumber(double: doublePrice!)
+        
                     do {
                         try(context.save())
                     } catch let error {
